@@ -1,0 +1,101 @@
+{% comment %}
+  Aadame Pure SUGAR-Style Story Reels Section
+  Circular reels with glowing animated gradient rings
+{% endcomment %}
+<div class="aadame-story-reels-section">
+  <div class="page-width">
+    <div class="aadame-story-reels-wrapper">
+      <!-- Responsive Mobile Left Arrow (Hidden on Desktop) -->
+      <button
+        type="button"
+        class="aadame-story-nav-btn aadame-story-nav-prev is-disabled"
+        aria-label="Scroll reels left"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <div class="aadame-story-reels-track">
+        <a href="{{ routes.all_products_collection_url }}" class="aadame-story-item">
+          <div class="aadame-story-ring">
+            <div class="aadame-story-ring-inner">
+              <img src="{{ 'product-mist.jpg' | asset_url }}" alt="Hydrating Dew Mists" class="aadame-story-img" width="76" height="76" loading="lazy" />
+            </div>
+          </div>
+          <span class="aadame-story-label">Dew Mists</span>
+        </a>
+
+        <a href="{{ routes.all_products_collection_url }}" class="aadame-story-item">
+          <div class="aadame-story-ring">
+            <div class="aadame-story-ring-inner">
+              <img src="{{ 'product-serum.jpg' | asset_url }}" alt="Bio-Peptide Serums" class="aadame-story-img" width="76" height="76" loading="lazy" />
+            </div>
+          </div>
+          <span class="aadame-story-label">Peptides</span>
+        </a>
+
+        <a href="{{ routes.all_products_collection_url }}" class="aadame-story-item">
+          <div class="aadame-story-ring">
+            <div class="aadame-story-ring-inner">
+              <img src="{{ 'product-cream.jpg' | asset_url }}" alt="Ceramide Barrier Creams" class="aadame-story-img" width="76" height="76" loading="lazy" />
+            </div>
+          </div>
+          <span class="aadame-story-label">Ceramides</span>
+        </a>
+
+        <a href="{{ routes.all_products_collection_url }}" class="aadame-story-item">
+          <div class="aadame-story-ring">
+            <div class="aadame-story-ring-inner">
+              <img src="{{ 'product-cleanser.jpg' | asset_url }}" alt="Jelly Cleansers" class="aadame-story-img" width="76" height="76" loading="lazy" />
+            </div>
+          </div>
+          <span class="aadame-story-label">Cleansers</span>
+        </a>
+
+        <a href="{{ routes.all_products_collection_url }}" class="aadame-story-item">
+          <div class="aadame-story-ring">
+            <div class="aadame-story-ring-inner">
+              <img src="{{ 'routine-glass-skin.jpg' | asset_url }}" alt="Real Skin Transformations" class="aadame-story-img" width="76" height="76" loading="lazy" />
+            </div>
+          </div>
+          <span class="aadame-story-label">Real Results</span>
+        </a>
+
+        <a href="{{ routes.all_products_collection_url }}" class="aadame-story-item">
+          <div class="aadame-story-ring">
+            <div class="aadame-story-ring-inner">
+              <img src="{{ 'aadame-gift-card.svg' | asset_url }}" alt="Luxury E-Gift Cards" class="aadame-story-img" width="76" height="76" loading="lazy" />
+            </div>
+          </div>
+          <span class="aadame-story-label">Gift Cards</span>
+        </a>
+      </div>
+
+      <!-- Responsive Mobile Right Arrow (Hidden on Desktop) -->
+      <button
+        type="button"
+        class="aadame-story-nav-btn aadame-story-nav-next"
+        aria-label="Scroll reels right"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Aadame Story Reels",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Aadame Story Reels"
+    }
+  ]
+}
+{% endschema %}

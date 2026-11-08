@@ -1,0 +1,207 @@
+{% comment %}
+  SUGAR Cosmetics Style Modular Widgets for Aadame Pure PDP
+  @param {string} widget - The type of widget to render:
+    'top_meta', 'offers', 'pincode', 'trust_pillars', 'sticky_bar', 'media_overlays'
+  @param {product} [product] - The product object
+  @param {string} [display_title] - Formatted product title
+{% endcomment %}
+
+{%- case widget -%}
+  {%- when 'top_meta' -%}
+    <div class="sugar-top-meta">
+      <nav class="sugar-breadcrumbs" aria-label="Breadcrumb">
+        <a href="{{ routes.root_url }}">Home</a>
+        <span class="sep">/</span>
+        {%- if product.gift_card? or product.handle contains 'gift-card' or product.title contains 'Gift Card' -%}
+          <a href="{{ routes.all_products_collection_url }}">Gifting</a>
+        {%- else -%}
+          <a href="{{ routes.all_products_collection_url }}">Skincare</a>
+        {%- endif -%}
+        <span class="sep">/</span>
+        <span class="current">{{ display_title | default: product.title | escape }}</span>
+      </nav>
+
+      <div class="sugar-rating-pill">
+        <div class="sugar-rating-stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          <span class="sugar-rating-score">{% if product.gift_card? or product.handle contains 'gift-card' or product.title contains 'Gift Card' %}5.0{% else %}4.9{% endif %}</span>
+        </div>
+        <div class="sugar-rating-divider"></div>
+        <span class="sugar-rating-reviews">{% if product.gift_card? or product.handle contains 'gift-card' or product.title contains 'Gift Card' %}520 Reviews{% else %}1,480 Reviews{% endif %}</span>
+        <div class="sugar-rating-divider"></div>
+        <span class="sugar-demand-tag">{% if product.gift_card? or product.handle contains 'gift-card' or product.title contains 'Gift Card' %}🎁 Instant Email Delivery{% else %}🔥 34 bought in last 24h{% endif %}</span>
+      </div>
+    </div>
+
+  {%- when 'offers' -%}
+    <div class="sugar-offers-card">
+      <div class="sugar-offers-header">
+        <span class="sugar-offers-tag">🏷️ AVAILABLE OFFERS</span>
+        <span class="sugar-offers-count">3 Offers Active</span>
+      </div>
+      <div class="sugar-offers-list">
+        <div class="sugar-offer-item">
+          <div class="sugar-offer-left">
+            <span class="sugar-offer-icon">🎁</span>
+            <div>
+              <div class="sugar-offer-title">FLAT 15% OFF on your ritual</div>
+              <div class="sugar-offer-desc">Use code <strong>PURE15</strong> on orders over $35</div>
+            </div>
+          </div>
+          <button type="button" class="sugar-copy-btn" data-code="PURE15" aria-label="Copy code PURE15">COPY</button>
+        </div>
+
+        <div class="sugar-offer-item">
+          <div class="sugar-offer-left">
+            <span class="sugar-offer-icon">🚚</span>
+            <div>
+              <div class="sugar-offer-title">FREE Express Delivery</div>
+              <div class="sugar-offer-desc">Unlocked automatically on orders over $40</div>
+            </div>
+          </div>
+          <span class="sugar-auto-tag">AUTO APPLIED</span>
+        </div>
+
+        <div class="sugar-offer-item">
+          <div class="sugar-offer-left">
+            <span class="sugar-offer-icon">✨</span>
+            <div>
+              <div class="sugar-offer-title">Complimentary Deluxe Mini</div>
+              <div class="sugar-offer-desc">Free Aadame Pure Hydrating Travel Vial with every order</div>
+            </div>
+          </div>
+          <span class="sugar-auto-tag">FREE GIFT</span>
+        </div>
+      </div>
+    </div>
+
+  {%- when 'pincode' -%}
+    <div class="sugar-pincode-card">
+      <div class="sugar-pincode-header">
+        <span class="sugar-pincode-icon">📍</span>
+        <span class="sugar-pincode-title">Estimated Delivery & COD Availability</span>
+      </div>
+      <div class="sugar-pincode-form">
+        <input
+          type="text"
+          class="sugar-pincode-input"
+          placeholder="Enter ZIP / Pincode (e.g. 10001)"
+          maxlength="6"
+          aria-label="Enter pincode or zip code"
+        />
+        <button type="button" class="sugar-pincode-btn">CHECK</button>
+      </div>
+      <div class="sugar-pincode-result" style="display: none;">
+        <div class="sugar-delivery-row">
+          <span class="sugar-check-icon">✓</span>
+          <span class="sugar-delivery-text">Estimated Delivery by <strong class="sugar-delivery-date">Thursday</strong></span>
+        </div>
+        <div class="sugar-delivery-perks">
+          <span>🚚 Free Express Shipping</span>
+          <span>💵 Cash on Delivery Available</span>
+          <span>🛡️ 100% Authentic Lab Fresh</span>
+        </div>
+      </div>
+    </div>
+
+  {%- when 'trust_pillars' -%}
+    <div class="sugar-trust-pillars">
+      <div class="sugar-pillar">
+        <span class="sugar-pillar-icon">🌿</span>
+        <span class="sugar-pillar-label">100% Clean & Vegan</span>
+        <span class="sugar-pillar-sub">No Parabens or Toxins</span>
+      </div>
+      <div class="sugar-pillar">
+        <span class="sugar-pillar-icon">🐰</span>
+        <span class="sugar-pillar-label">Cruelty-Free</span>
+        <span class="sugar-pillar-sub">PETA Certified</span>
+      </div>
+      <div class="sugar-pillar">
+        <span class="sugar-pillar-icon">🧪</span>
+        <span class="sugar-pillar-label">Dermat-Tested</span>
+        <span class="sugar-pillar-sub">Safe for Sensitive Skin</span>
+      </div>
+      <div class="sugar-pillar">
+        <span class="sugar-pillar-icon">🛡️</span>
+        <span class="sugar-pillar-label">100% Authentic</span>
+        <span class="sugar-pillar-sub">Direct From Lab</span>
+      </div>
+    </div>
+
+  {%- when 'media_overlays' -%}
+    {%- if product.gift_card? or product.handle contains 'gift-card' or product.title contains 'Gift Card' -%}
+      <div class="sugar-bestseller-badge">
+        <span class="badge-icon">🎁</span>
+        <span>E-GIFT CARD</span>
+      </div>
+    {%- else -%}
+      <div class="sugar-bestseller-badge">
+        <span class="badge-icon">★</span>
+        <span>BESTSELLER</span>
+      </div>
+    {%- endif -%}
+    <button
+      type="button"
+      class="sugar-wishlist-btn"
+      data-product-id="{{ product.id }}"
+      aria-label="Add to wishlist"
+      title="Save to wishlist"
+    >
+      ♡
+    </button>
+
+  {%- when 'sticky_bar' -%}
+    {%- liquid
+      assign sticky_img = product.featured_image
+      if settings.use_modern_skincare_product_images != false
+        if product.gift_card? or product.handle contains 'gift-card' or product.title contains 'Gift Card'
+          assign sticky_img_url = 'aadame-gift-card.svg' | asset_url
+        elsif product.handle contains 'serum' or product.title contains 'Serum'
+          assign sticky_img_url = 'product-serum.jpg' | asset_url
+        elsif product.handle contains 'cream' or product.title contains 'Cream'
+          assign sticky_img_url = 'product-cream.jpg' | asset_url
+        elsif product.handle contains 'cleanser' or product.title contains 'Cleanser'
+          assign sticky_img_url = 'product-cleanser.jpg' | asset_url
+        elsif product.handle contains 'mist' or product.title contains 'Mist'
+          assign sticky_img_url = 'product-mist.jpg' | asset_url
+        else
+          assign sticky_img_url = 'product-mist.jpg' | asset_url
+        endif
+      else
+        assign sticky_img_url = sticky_img | image_url: width: 120
+      endif
+    -%}
+    <div class="sugar-sticky-bar" id="SugarStickyBar" data-variant-id="{{ product.selected_or_first_available_variant.id }}">
+      <div class="sugar-sticky-inner">
+        <div class="sugar-sticky-product">
+          <img
+            src="{{ sticky_img_url }}"
+            alt="{{ display_title | default: product.title | escape }}"
+            class="sugar-sticky-img"
+            loading="lazy"
+            width="52"
+            height="52"
+          />
+          <div class="sugar-sticky-meta">
+            <span class="sugar-sticky-title">{{ display_title | default: product.title | escape }}</span>
+            <span class="sugar-sticky-price">{{ product.selected_or_first_available_variant.price | money }}</span>
+          </div>
+        </div>
+        <div class="sugar-sticky-actions">
+          {%- if product.variants.size > 1 -%}
+            <select class="sugar-sticky-variant-select" aria-label="Select variant">
+              {%- for variant in product.variants -%}
+                <option value="{{ variant.id }}" {% if variant == product.selected_or_first_available_variant %}selected{% endif %}>
+                  {{ variant.title }} ({{ variant.price | money }})
+                </option>
+              {%- endfor -%}
+            </select>
+          {%- endif -%}
+          <button type="button" class="sugar-sticky-btn">
+            <span>ADD TO BAG</span>
+            <span>🛍️</span>
+          </button>
+        </div>
+      </div>
+    </div>
+{%- endcase -%}

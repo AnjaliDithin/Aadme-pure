@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="100%" height="100%">
+  <defs>
+    <!-- Background Radial Gradient -->
+    <radialGradient id="bgGradient" cx="50%" cy="50%" r="70%" fx="40%" fy="35%">
+      <stop offset="0%" stop-color="#FAF7F2" />
+      <stop offset="60%" stop-color="#F2ECE4" />
+      <stop offset="100%" stop-color="#E5DCD1" />
+    </radialGradient>
+
+    <!-- Metallic Gold Foil Gradient -->
+    <linearGradient id="goldFoil" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D4AF37" />
+      <stop offset="25%" stop-color="#FFF3C4" />
+      <stop offset="50%" stop-color="#C59B27" />
+      <stop offset="75%" stop-color="#9A6B48" />
+      <stop offset="100%" stop-color="#D4AF37" />
+    </linearGradient>
+
+    <!-- Card Body Dark Obsidian Gradient -->
+    <linearGradient id="cardBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#24201E" />
+      <stop offset="50%" stop-color="#181514" />
+      <stop offset="100%" stop-color="#0E0C0B" />
+    </linearGradient>
+
+    <!-- Drop Shadows -->
+    <filter id="cardShadow" x="-15%" y="-15%" width="135%" height="145%">
+      <feDropShadow dx="0" dy="35" stdDeviation="30" flood-color="#554433" flood-opacity="0.25" />
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#1A1108" flood-opacity="0.15" />
+    </filter>
+
+    <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#D4AF37" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="1200" height="1200" fill="url(#bgGradient)" />
+
+  <!-- Subtle Botanical Shadows & Ambiance -->
+  <circle cx="200" cy="250" r="350" fill="rgba(154, 107, 72, 0.05)" filter="blur(40px)" />
+  <circle cx="1000" cy="950" r="400" fill="rgba(212, 175, 55, 0.07)" filter="blur(50px)" />
+
+  <!-- Main Floating Gift Card -->
+  <g transform="translate(160, 310)" filter="url(#cardShadow)">
+    <!-- Card Base -->
+    <rect width="880" height="580" rx="32" ry="32" fill="url(#cardBg)" />
+
+    <!-- Card Gold Border Inner & Outer -->
+    <rect width="880" height="580" rx="32" ry="32" fill="none" stroke="url(#goldFoil)" stroke-width="2.5" />
+    <rect x="18" y="18" width="844" height="544" rx="22" ry="22" fill="none" stroke="url(#goldFoil)" stroke-width="1" stroke-opacity="0.35" />
+
+    <!-- Subtle Diagonal Silk/Geometric Sheen -->
+    <path d="M 0 160 L 550 0 L 620 0 L 0 220 Z" fill="url(#goldFoil)" opacity="0.04" />
+    <path d="M 200 580 L 880 200 L 880 280 L 290 580 Z" fill="url(#goldFoil)" opacity="0.03" />
+
+    <!-- Top Monogram & Botanical Crest -->
+    <g transform="translate(440, 105)" filter="url(#goldGlow)">
+      <!-- Outer Wreath Rings -->
+      <circle cx="0" cy="0" r="46" fill="none" stroke="url(#goldFoil)" stroke-width="1.2" stroke-dasharray="4 2" />
+      <circle cx="0" cy="0" r="40" fill="none" stroke="url(#goldFoil)" stroke-width="1.8" />
+      
+      <!-- Botanical Leaves -->
+      <path d="M -40 0 C -40 -20 -20 -38 0 -40 C -15 -25 -25 -10 -25 5 Z" fill="url(#goldFoil)" opacity="0.8" />
+      <path d="M 40 0 C 40 -20 20 -38 0 -40 C 15 -25 25 -10 25 5 Z" fill="url(#goldFoil)" opacity="0.8" />
+      
+      <!-- AP Monogram -->
+      <text x="0" y="11" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="28" font-weight="600" fill="url(#goldFoil)" letter-spacing="1">AP</text>
+    </g>
+
+    <!-- Brand Name -->
+    <text x="440" y="215" text-anchor="middle" font-family="'Poppins', 'Cinzel', sans-serif" font-size="26" font-weight="700" fill="url(#goldFoil)" letter-spacing="10">AADAME PURE</text>
+    <text x="440" y="245" text-anchor="middle" font-family="'Poppins', sans-serif" font-size="12" font-weight="500" fill="#A8A29E" letter-spacing="6">BOTANICAL CLINICAL COUTURE</text>
+
+    <!-- Gold Divider Bar -->
+    <line x1="280" y1="285" x2="600" y2="285" stroke="url(#goldFoil)" stroke-width="1" stroke-opacity="0.6" />
+    <polygon points="440,282 443,285 440,288 437,285" fill="url(#goldFoil)" />
+
+    <!-- Card Title -->
+    <text x="440" y="340" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="34" font-style="italic" fill="#FAF7F2" letter-spacing="2">The Skincare Ritual Gift Card</text>
+    <text x="440" y="380" text-anchor="middle" font-family="'Poppins', sans-serif" font-size="14" font-weight="400" fill="#D6D3D1" letter-spacing="3">AN INVITATION TO EFFORTLESS RADIANCE</text>
+
+    <!-- Bottom Metadata Bar -->
+    <!-- Smart EMV Gold Metallic Chip on Bottom Left -->
+    <g transform="translate(60, 440)">
+      <rect width="64" height="50" rx="8" fill="url(#goldFoil)" opacity="0.9" />
+      <rect x="3" y="3" width="58" height="44" rx="6" fill="none" stroke="#684B2B" stroke-width="1" opacity="0.5" />
+      <line x1="3" y1="25" x2="61" y2="25" stroke="#684B2B" stroke-width="1" opacity="0.4" />
+      <line x1="24" y1="3" x2="24" y2="47" stroke="#684B2B" stroke-width="1" opacity="0.4" />
+      <line x1="42" y1="3" x2="42" y2="47" stroke="#684B2B" stroke-width="1" opacity="0.4" />
+    </g>
+
+    <text x="145" y="468" font-family="'Courier New', monospace" font-size="13" font-weight="600" fill="#E7E5E4" letter-spacing="3">E-GIFT • VIRTUAL PASS</text>
+    <text x="145" y="488" font-family="'Poppins', sans-serif" font-size="11" font-weight="400" fill="#A8A29E" letter-spacing="1">DELIVERED INSTANTLY VIA EMAIL</text>
+
+    <!-- Bottom Right Redemption Stamp -->
+    <g transform="translate(740, 465)">
+      <rect x="-100" y="-22" width="180" height="42" rx="21" fill="rgba(212, 175, 55, 0.12)" stroke="url(#goldFoil)" stroke-width="1.2" />
+      <text x="-10" y="5" text-anchor="middle" font-family="'Poppins', sans-serif" font-size="12" font-weight="700" fill="url(#goldFoil)" letter-spacing="2">VALID STOREWIDE</text>
+    </g>
+  </g>
+
+  <!-- Subtle Decorative Corner Details -->
+  <text x="600" y="980" text-anchor="middle" font-family="'Poppins', sans-serif" font-size="15" font-weight="500" fill="#78716C" letter-spacing="3">REDEEMABLE TOWARDS ANY AADAME PURE RITUAL</text>
+</svg>

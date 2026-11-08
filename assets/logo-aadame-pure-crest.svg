@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 64" width="340" height="64" fill="none">
+  <!-- Luxury Intertwined Monogram Crest -->
+  <g transform="translate(6, 6)">
+    <!-- Thin Gold Circular Ring -->
+    <circle cx="26" cy="26" r="24" stroke="#9A6B48" stroke-width="1.2" stroke-dasharray="0.5 3" stroke-linecap="round"/>
+    <circle cx="26" cy="26" r="21.5" stroke="#1C1917" stroke-width="1"/>
+    
+    <!-- Botanical Olive / Laurel Branches flanking the base -->
+    <path d="M12 28 C12 36 17 41 26 43 C35 41 40 36 40 28" stroke="#9A6B48" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+    <path d="M13 32 C10 32 9 30 11 28 M16 36 C14 37 12 36 13 34 M20 40 C18 42 16 41 18 39 M39 32 C42 32 43 30 41 28 M36 36 C38 37 40 36 39 34 M32 40 C34 42 36 41 34 39" 
+          stroke="#9A6B48" stroke-width="1" stroke-linecap="round"/>
+
+    <!-- Intertwined AP Luxury Monogram -->
+    <!-- Letter A -->
+    <path d="M22 13 L16 33 M22 13 L28 33 M18 27 L26 27" stroke="#1C1917" stroke-width="1.6" stroke-linecap="round"/>
+    <!-- Letter P overlapping -->
+    <path d="M26 15 L26 31 M26 15 C31 15 33 18 33 21 C33 24 31 27 26 27" stroke="#9A6B48" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+    <!-- Tiny Crown/Star Accent -->
+    <circle cx="26" cy="9" r="1.2" fill="#9A6B48"/>
+  </g>
+
+  <!-- Typography -->
+  <text x="68" y="32" font-family="'Italiana', 'Didot', 'Playfair Display', Georgia, serif" font-size="22" font-weight="600" letter-spacing="5.5" fill="#1C1917">AADAME</text>
+  <text x="69" y="47" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="600" letter-spacing="6" fill="#9A6B48">PURE • EST. 2026</text>
+</svg>

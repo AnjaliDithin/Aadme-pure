@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 54" width="320" height="54" fill="none">
+  <!-- Minimalist Clean Geometric Aesthetic -->
+  <g transform="translate(6, 12)">
+    <circle cx="15" cy="15" r="14" stroke="#1C1917" stroke-width="1.8"/>
+    <!-- Minimalist A monogram -->
+    <path d="M15 6 L8 24 M15 6 L22 24 M10 19 L20 19" stroke="#1C1917" stroke-width="1.8" stroke-linecap="round"/>
+    <circle cx="15" cy="11" r="1" fill="#9A6B48"/>
+  </g>
+  <text x="48" y="27" font-family="'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="700" letter-spacing="6" fill="#1C1917">AADAME</text>
+  <text x="48" y="42" font-family="'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600" letter-spacing="6" fill="#9A6B48">PURE BOTANICALS</text>
+</svg>

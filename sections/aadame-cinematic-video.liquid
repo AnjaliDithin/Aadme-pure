@@ -1,0 +1,144 @@
+{% comment %}
+  Aadame Pure Cinematic Video Hero Banner
+  High-impact luxury beauty video with floating dew particle canvas & interactive controls
+{% endcomment %}
+<div class="aadame-video-banner-section">
+  <!-- Seamless Video Loop with Fallback Posters -->
+  <video
+    id="AadameHeroVideo"
+    class="aadame-video-bg"
+    autoplay
+    loop
+    muted
+    playsinline
+    poster="{{ 'hero-skincare.jpg' | asset_url }}"
+  >
+    <!-- High-res royalty-free beauty skincare MP4 streams -->
+    <source src="https://assets.mixkit.co/videos/preview/mixkit-close-up-of-a-woman-applying-moisturizer-41315-large.mp4" type="video/mp4" />
+    <source src="https://assets.mixkit.co/videos/preview/mixkit-macro-dropper-dropping-cosmetic-serum-41444-large.mp4" type="video/mp4" />
+  </video>
+
+  <!-- Ambient Darkening Overlay for Contrast -->
+  <div class="aadame-video-overlay"></div>
+
+  <!-- Interactive Floating Dew Particles Canvas -->
+  <canvas id="AadameDewCanvas" class="aadame-dew-canvas"></canvas>
+
+  <!-- Center Content -->
+  <div class="aadame-video-content">
+    <div class="aadame-video-badge">
+      <span>✦</span>
+      <span>CLINICAL BOTANICAL COUTURE</span>
+      <span>✦</span>
+    </div>
+
+    <h1 class="aadame-video-title">
+      Awaken Your Skin’s Natural Radiance
+    </h1>
+
+    <p class="aadame-video-subtitle">
+      Clinically proven, peptide-infused rituals crafted to strengthen your skin barrier and impart an effortless, all-day glass-skin glow.
+    </p>
+
+    <div class="aadame-video-actions">
+      <a href="{{ routes.all_products_collection_url }}" class="aadame-btn-gold">
+        <span>Shop The Ritual</span>
+        <span>→</span>
+      </a>
+      <button
+        type="button"
+        id="AadameWatchRitualsBtn"
+        class="aadame-btn-glass"
+        aria-haspopup="dialog"
+        aria-controls="AadameVideoModal"
+      >
+        <span>Watch Rituals</span>
+        <span>▶</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Sound Toggle Control -->
+  <button
+    type="button"
+    id="AadameVideoSoundToggle"
+    class="aadame-video-sound-toggle"
+    aria-label="Toggle video sound"
+    title="Unmute video"
+  >
+    🔇
+  </button>
+
+  <!-- Fullwidth Cinematic Video Popup Modal -->
+  <div
+    id="AadameVideoModal"
+    class="aadame-video-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Aadame Pure Ritual Film"
+    hidden
+  >
+    <div class="aadame-video-modal-backdrop"></div>
+
+    <div class="aadame-video-modal-container">
+      <!-- Modal Header -->
+      <div class="aadame-video-modal-header">
+        <div class="aadame-video-modal-badge">
+          <span>✦</span>
+          <span>AADAME PURE FILM</span>
+          <span>✦</span>
+          <span class="aadame-video-modal-subtitle">The Glass-Skin Botanical Ritual</span>
+        </div>
+        <button
+          type="button"
+          id="AadameVideoModalClose"
+          class="aadame-video-modal-close"
+          aria-label="Close video popup"
+        >
+          ✕
+        </button>
+      </div>
+
+      <!-- Full-Width Video Player -->
+      <div class="aadame-video-modal-player-wrapper">
+        <video
+          id="AadameModalPlayer"
+          class="aadame-video-modal-player"
+          controls
+          playsinline
+          preload="metadata"
+          poster="{{ 'routine-glass-skin.jpg' | asset_url }}"
+        >
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-close-up-of-a-woman-applying-moisturizer-41315-large.mp4" type="video/mp4" />
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-macro-dropper-dropping-cosmetic-serum-41444-large.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="aadame-video-modal-footer">
+        <div class="aadame-video-modal-info">
+          <h3 class="aadame-video-modal-title">Complete 4-Step Dew Ritual</h3>
+          <p class="aadame-video-modal-desc">Gentle Cleanser • Bio-Peptide Serum • Barrier Cloud Cream • Rose Dew Mist</p>
+        </div>
+        <a href="{{ routes.all_products_collection_url }}" class="aadame-btn-gold aadame-btn-modal-shop">
+          <span>Shop The Featured Ritual</span>
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cinematic Video Hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Cinematic Video Hero"
+    }
+  ]
+}
+{% endschema %}

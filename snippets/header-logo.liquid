@@ -1,0 +1,85 @@
+{% comment %}
+  Renders the Aadame Pure brand logo or custom uploaded logo
+  Accepts:
+  - is_middle_center: {Boolean}
+{% endcomment %}
+{%- if settings.logo != blank -%}
+  <div class="header__heading-logo-wrapper">
+    {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+    {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
+    {%- if is_middle_center -%}
+      {% capture sizes %}(min-width: 750px) {{ settings.logo_width }}px, 50vw{% endcapture %}
+    {%- else -%}
+      {% capture sizes %}(max-width: {{ settings.logo_width | times: 2 }}px) 50vw, {{ settings.logo_width }}px{% endcapture %}
+    {%- endif -%}
+    {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
+    {{
+      settings.logo
+      | image_url: width: 600
+      | image_tag:
+        class: 'header__heading-logo',
+        widths: widths,
+        height: logo_height,
+        width: settings.logo_width,
+        alt: logo_alt,
+        sizes: sizes,
+        preload: true
+    }}
+  </div>
+{%- else -%}
+  <span class="header__heading-logo-wrapper header__heading-logo-aadame">
+    {%- case settings.aadame_logo_style -%}
+      {%- when 'crest' -%}
+        <img
+          src="{{ 'logo-aadame-pure-crest.svg' | asset_url }}"
+          alt="{{ shop.name | default: 'Aadame Pure' | escape }}"
+          class="header__heading-logo header__heading-logo-svg"
+          width="220"
+          height="41"
+          loading="eager"
+        >
+      {%- when 'editorial' -%}
+        <img
+          src="{{ 'logo-aadame-pure-editorial.svg' | asset_url }}"
+          alt="{{ shop.name | default: 'Aadame Pure' | escape }}"
+          class="header__heading-logo header__heading-logo-svg"
+          width="220"
+          height="39"
+          loading="eager"
+        >
+      {%- when 'botanical' -%}
+        <img
+          src="{{ 'logo-aadame-pure-botanical.svg' | asset_url }}"
+          alt="{{ shop.name | default: 'Aadame Pure' | escape }}"
+          class="header__heading-logo header__heading-logo-svg"
+          width="220"
+          height="41"
+          loading="eager"
+        >
+      {%- when 'minimal' -%}
+        <img
+          src="{{ 'logo-aadame-pure-minimal.svg' | asset_url }}"
+          alt="{{ shop.name | default: 'Aadame Pure' | escape }}"
+          class="header__heading-logo header__heading-logo-svg"
+          width="210"
+          height="35"
+          loading="eager"
+        >
+      {%- when 'luxury_seal' -%}
+        <img
+          src="{{ 'logo-aadame-pure-luxury-seal.svg' | asset_url }}"
+          alt="{{ shop.name | default: 'Aadame Pure' | escape }}"
+          class="header__heading-logo header__heading-logo-svg"
+          width="220"
+          height="39"
+          loading="eager"
+        >
+      {%- else -%}
+        <span class="aadame-pure-wordmark">
+          <span class="aadame-wordmark-title">AADAME</span>
+          <span class="aadame-wordmark-dot">•</span>
+          <span class="aadame-wordmark-sub">PURE</span>
+        </span>
+    {%- endcase -%}
+  </span>
+{%- endif -%}

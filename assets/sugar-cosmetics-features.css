@@ -1,0 +1,759 @@
+/**
+ * SUGAR Cosmetics Style E-Commerce Features for Aadame Pure
+ * High-conversion beauty & skincare UX:
+ * - Desktop vertical thumbnail strip on left + main hero viewer on right
+ * - Floating wishlist heart + Bestseller badges
+ * - Breadcrumbs & Star rating social proof pill
+ * - Interactive coupon/offers box with tap-to-copy code
+ * - Pincode / live delivery date estimator
+ * - 4-pillar trust badge strip (Vegan, Cruelty-Free, Dermat-Tested, 100% Authentic)
+ * - Sticky bottom "Add to Bag" bar on scroll
+ * - Dynamic Free Shipping progress bar in cart drawer
+ */
+
+/* ==========================================================================
+   1. SUGAR-STYLE PDP GALLERY: Desktop Vertical Left Thumbnails & Sticky Gallery
+   ========================================================================== */
+@media screen and (min-width: 750px) {
+  /* Ensure the media column and gallery stick smoothly during scroll - No Freespace */
+  .product__media-wrapper {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 2rem !important;
+    z-index: 2 !important;
+    height: fit-content !important;
+  }
+
+  .product__media-wrapper media-gallery,
+  .product--thumbnail media-gallery,
+  .product--thumbnail_slider media-gallery,
+  media-gallery.product__column-sticky,
+  media-gallery.sugar-vertical-gallery {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 2rem !important;
+    z-index: 2 !important;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  /* Flex row-reverse puts thumbnail-slider on the LEFT and GalleryViewer on the RIGHT when thumbnails exist */
+  .product--thumbnail media-gallery:has(.thumbnail-list__item),
+  .product--thumbnail_slider media-gallery:has(.thumbnail-list__item),
+  media-gallery.sugar-vertical-gallery:has(.thumbnail-list__item) {
+    display: flex !important;
+    flex-direction: row-reverse !important;
+    gap: 1.6rem !important;
+    align-items: flex-start !important;
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 2rem !important;
+    z-index: 2 !important;
+  }
+
+  .product--thumbnail .thumbnail-slider,
+  .product--thumbnail_slider .thumbnail-slider,
+  media-gallery.sugar-vertical-gallery .thumbnail-slider {
+    width: 86px !important;
+    flex-shrink: 0 !important;
+    order: 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .product--thumbnail .thumbnail-list,
+  .product--thumbnail_slider .thumbnail-list,
+  media-gallery.sugar-vertical-gallery .thumbnail-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.9rem !important;
+    padding: 0.2rem !important;
+    max-height: 600px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(154, 107, 72, 0.4) transparent;
+  }
+
+  .product--thumbnail .thumbnail-list::-webkit-scrollbar,
+  .product--thumbnail_slider .thumbnail-list::-webkit-scrollbar {
+    width: 4px;
+  }
+  .product--thumbnail .thumbnail-list::-webkit-scrollbar-thumb,
+  .product--thumbnail_slider .thumbnail-list::-webkit-scrollbar-thumb {
+    background: rgba(154, 107, 72, 0.35);
+    border-radius: 4px;
+  }
+
+  .product--thumbnail .thumbnail-list__item,
+  .product--thumbnail_slider .thumbnail-list__item,
+  media-gallery.sugar-vertical-gallery .thumbnail-list__item {
+    width: 100% !important;
+    max-width: 86px !important;
+    padding: 0 !important;
+  }
+
+  .product--thumbnail .thumbnail,
+  .product--thumbnail_slider .thumbnail,
+  media-gallery.sugar-vertical-gallery .thumbnail {
+    width: 84px !important;
+    height: 84px !important;
+    border-radius: 12px !important;
+    border: 1.5px solid rgba(154, 107, 72, 0.2) !important;
+    background: #FAF8F5 !important;
+    cursor: pointer !important;
+    overflow: hidden !important;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    position: relative !important;
+  }
+
+  .product--thumbnail .thumbnail:hover {
+    border-color: #9A6B48 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(154, 107, 72, 0.2) !important;
+  }
+
+  .product--thumbnail .thumbnail[aria-current="true"],
+  .product--thumbnail_slider .thumbnail[aria-current="true"] {
+    border: 2px solid #9A6B48 !important;
+    box-shadow: 0 0 0 2px rgba(154, 107, 72, 0.25), 0 6px 16px rgba(154, 107, 72, 0.2) !important;
+    transform: scale(1.02) !important;
+  }
+
+  .product--thumbnail:has(.thumbnail-list__item) [id^="GalleryViewer"],
+  .product--thumbnail_slider:has(.thumbnail-list__item) [id^="GalleryViewer"] {
+    flex: 1 1 auto !important;
+    width: calc(100% - 102px) !important;
+    order: 2 !important;
+    margin: 0 !important;
+  }
+
+  /* When there are no thumbnails (e.g. Gift Card), full width hero viewer */
+  .product--thumbnail:not(:has(.thumbnail-list__item)) [id^="GalleryViewer"],
+  .product--thumbnail_slider:not(:has(.thumbnail-list__item)) [id^="GalleryViewer"],
+  media-gallery:not(:has(.thumbnail-list__item)) [id^="GalleryViewer"],
+  media-gallery [id^="GalleryViewer"] {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Hide thumbnail navigation arrows on vertical desktop strip for clean look */
+  .product--thumbnail .thumbnail-slider .slider-button,
+  .product--thumbnail_slider .thumbnail-slider .slider-button {
+    display: none !important;
+  }
+}
+
+/* Ensure product media containers always have height and proper positioning */
+.product__modal-opener {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+}
+
+.product__media.aadame-zoom-container,
+.product-media-container .product__media {
+  min-height: 400px !important;
+  position: relative !important;
+  width: 100% !important;
+  display: block !important;
+  background: #FAF8F5 !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+}
+
+/* Mobile Gallery Layout (< 990px) */
+@media screen and (max-width: 989px) {
+  .product--thumbnail .thumbnail-slider,
+  .product--thumbnail_slider .thumbnail-slider {
+    margin-top: 1rem !important;
+  }
+  .product--thumbnail .thumbnail,
+  .product--thumbnail_slider .thumbnail {
+    width: 68px !important;
+    height: 68px !important;
+    border-radius: 10px !important;
+  }
+}
+
+/* ==========================================================================
+   2. SUGAR-STYLE OVERLAYS: Bestseller Badge & Wishlist Heart Button
+   ========================================================================== */
+.sugar-media-overlay-container {
+  position: relative !important;
+}
+
+.sugar-bestseller-badge {
+  position: absolute !important;
+  top: 1.2rem !important;
+  left: 1.2rem !important;
+  z-index: 5 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+  background: #1C1917 !important;
+  color: #FFFFFF !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  padding: 0.4rem 1rem !important;
+  border-radius: 9999px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  pointer-events: none !important;
+}
+
+.sugar-bestseller-badge .badge-icon {
+  color: #FFB800 !important;
+  font-size: 1.1rem !important;
+}
+
+.sugar-wishlist-btn {
+  position: absolute !important;
+  top: 1.2rem !important;
+  right: 1.2rem !important;
+  z-index: 5 !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(154, 107, 72, 0.25) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  color: #57534E !important;
+  font-size: 1.6rem !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+  padding: 0 !important;
+}
+
+.sugar-wishlist-btn:hover {
+  transform: scale(1.1) !important;
+  color: #E11D48 !important;
+  border-color: #E11D48 !important;
+}
+
+.sugar-wishlist-btn.is-active {
+  color: #E11D48 !important;
+  background: #FFF1F2 !important;
+  border-color: #E11D48 !important;
+  animation: heartPulse 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes heartPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+/* ==========================================================================
+   3. SUGAR-STYLE PDP TOP INFO: Breadcrumbs & Rating Bar
+   ========================================================================== */
+.sugar-breadcrumbs {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.6rem !important;
+  font-size: 1.15rem !important;
+  color: #78716C !important;
+  margin-bottom: 0.8rem !important;
+  letter-spacing: 0.02em !important;
+}
+
+.sugar-breadcrumbs a {
+  color: #78716C !important;
+  text-decoration: none !important;
+  transition: color 0.15s ease !important;
+}
+
+.sugar-breadcrumbs a:hover {
+  color: #9A6B48 !important;
+  text-decoration: underline !important;
+}
+
+.sugar-breadcrumbs .sep {
+  font-size: 0.9rem !important;
+  color: #D6D3D1 !important;
+}
+
+.sugar-breadcrumbs .current {
+  color: #1C1917 !important;
+  font-weight: 500 !important;
+}
+
+.sugar-rating-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.8rem !important;
+  background: #F5EFEB !important;
+  border: 1px solid rgba(154, 107, 72, 0.2) !important;
+  padding: 0.45rem 1.1rem !important;
+  border-radius: 9999px !important;
+  margin-top: 0.6rem !important;
+  margin-bottom: 1.2rem !important;
+  font-size: 1.2rem !important;
+}
+
+.sugar-rating-stars {
+  color: #D97706 !important;
+  font-weight: 700 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.25rem !important;
+}
+
+.sugar-rating-score {
+  color: #1C1917 !important;
+  font-weight: 700 !important;
+  margin-left: 0.3rem !important;
+}
+
+.sugar-rating-divider {
+  width: 1px !important;
+  height: 14px !important;
+  background: #D6D3D1 !important;
+}
+
+.sugar-rating-reviews {
+  color: #57534E !important;
+  font-weight: 500 !important;
+  text-decoration: underline !important;
+  cursor: pointer !important;
+}
+
+.sugar-demand-tag {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  color: #B45309 !important;
+  font-weight: 600 !important;
+  font-size: 1.15rem !important;
+}
+
+/* ==========================================================================
+   4. SUGAR-STYLE AVAILABLE OFFERS / PROMO CODES CARD
+   ========================================================================== */
+.sugar-offers-card {
+  background: linear-gradient(135deg, #FAF7F2 0%, #F5EFEB 100%) !important;
+  border: 1px solid rgba(154, 107, 72, 0.35) !important;
+  border-radius: 16px !important;
+  padding: 1.6rem !important;
+  margin: 1.8rem 0 !important;
+  box-shadow: 0 4px 18px rgba(154, 107, 72, 0.08) !important;
+}
+
+.sugar-offers-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 1.2rem !important;
+  border-bottom: 1px dashed rgba(154, 107, 72, 0.25) !important;
+  padding-bottom: 0.8rem !important;
+}
+
+.sugar-offers-tag {
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  color: #1C1917 !important;
+  letter-spacing: 0.04em !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.sugar-offers-count {
+  background: #9A6B48 !important;
+  color: #FFFFFF !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  padding: 0.2rem 0.8rem !important;
+  border-radius: 9999px !important;
+}
+
+.sugar-offers-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
+}
+
+.sugar-offer-item {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 1.2rem !important;
+  background: #FFFFFF !important;
+  border: 1px solid rgba(154, 107, 72, 0.2) !important;
+  border-radius: 12px !important;
+  padding: 1rem 1.4rem !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.sugar-offer-item:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(154, 107, 72, 0.12) !important;
+}
+
+.sugar-offer-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
+}
+
+.sugar-offer-icon {
+  font-size: 1.8rem !important;
+  line-height: 1 !important;
+}
+
+.sugar-offer-title {
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  color: #1C1917 !important;
+}
+
+.sugar-offer-desc {
+  font-size: 1.15rem !important;
+  color: #57534E !important;
+  margin-top: 0.2rem !important;
+}
+
+.sugar-offer-desc strong {
+  color: #9A6B48 !important;
+  background: rgba(154, 107, 72, 0.1) !important;
+  padding: 0.1rem 0.4rem !important;
+  border-radius: 4px !important;
+}
+
+.sugar-copy-btn {
+  background: #1C1917 !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  padding: 0.6rem 1.4rem !important;
+  border-radius: 9999px !important;
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  transition: all 0.2s ease !important;
+  outline: none !important;
+}
+
+.sugar-copy-btn:hover {
+  background: #9A6B48 !important;
+  transform: scale(1.04) !important;
+}
+
+.sugar-copy-btn.is-copied {
+  background: #15803D !important;
+  color: #FFFFFF !important;
+}
+
+.sugar-auto-tag {
+  background: #ECFDF5 !important;
+  color: #047857 !important;
+  border: 1px solid #A7F3D0 !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  padding: 0.4rem 1rem !important;
+  border-radius: 9999px !important;
+  white-space: nowrap !important;
+}
+
+/* ==========================================================================
+   5. SUGAR-STYLE PINCODE & LIVE DELIVERY ESTIMATOR
+   ========================================================================== */
+.sugar-pincode-card {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(154, 107, 72, 0.28) !important;
+  border-radius: 14px !important;
+  padding: 1.4rem 1.6rem !important;
+  margin: 1.6rem 0 !important;
+}
+
+.sugar-pincode-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  color: #1C1917 !important;
+  margin-bottom: 1rem !important;
+}
+
+.sugar-pincode-form {
+  display: flex !important;
+  gap: 0.8rem !important;
+  position: relative !important;
+}
+
+.sugar-pincode-input {
+  flex: 1 !important;
+  height: 4.4rem !important;
+  border: 1.5px solid #D6D3D1 !important;
+  border-radius: 9999px !important;
+  padding: 0 1.8rem !important;
+  font-size: 1.3rem !important;
+  font-weight: 500 !important;
+  color: #1C1917 !important;
+  outline: none !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.sugar-pincode-input:focus {
+  border-color: #9A6B48 !important;
+  box-shadow: 0 0 0 3px rgba(154, 107, 72, 0.2) !important;
+}
+
+.sugar-pincode-btn {
+  background: #1C1917 !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  border-radius: 9999px !important;
+  padding: 0 2.2rem !important;
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.sugar-pincode-btn:hover {
+  background: #9A6B48 !important;
+}
+
+.sugar-pincode-result {
+  margin-top: 1.2rem !important;
+  padding-top: 1rem !important;
+  border-top: 1px dashed #E7E5E4 !important;
+  animation: fadeInDown 0.25s ease;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.sugar-delivery-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.6rem !important;
+  color: #15803D !important;
+  font-size: 1.3rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 0.6rem !important;
+}
+
+.sugar-delivery-perks {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 1.2rem !important;
+  color: #57534E !important;
+  font-size: 1.15rem !important;
+}
+
+.sugar-delivery-perks span {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+}
+
+/* ==========================================================================
+   6. SUGAR-STYLE 4-PILLAR TRUST / USP STRIP
+   ========================================================================== */
+.sugar-trust-pillars {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 1rem !important;
+  margin: 2rem 0 !important;
+  padding: 1.4rem 1rem !important;
+  background: #FAF8F5 !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(154, 107, 72, 0.15) !important;
+}
+
+@media screen and (max-width: 600px) {
+  .sugar-trust-pillars {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.2rem 0.8rem !important;
+  }
+}
+
+.sugar-pillar {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+.sugar-pillar-icon {
+  font-size: 2.2rem !important;
+  margin-bottom: 0.4rem !important;
+}
+
+.sugar-pillar-label {
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  color: #1C1917 !important;
+  line-height: 1.2 !important;
+}
+
+.sugar-pillar-sub {
+  font-size: 1.05rem !important;
+  color: #78716C !important;
+  margin-top: 0.2rem !important;
+}
+
+/* ==========================================================================
+   7. SUGAR-STYLE STICKY "ADD TO BAG" BOTTOM BAR
+   ========================================================================== */
+.sugar-sticky-bar {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 100 !important;
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-top: 1px solid rgba(154, 107, 72, 0.25) !important;
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.08) !important;
+  transform: translateY(110%) !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  padding: 1rem 0 !important;
+}
+
+.sugar-sticky-bar.is-visible {
+  transform: translateY(0) !important;
+}
+
+.sugar-sticky-inner {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 1.5rem !important;
+  max-width: var(--page-width, 1200px) !important;
+  margin: 0 auto !important;
+  padding: 0 1.5rem !important;
+}
+
+.sugar-sticky-product {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1.2rem !important;
+  min-width: 0 !important;
+}
+
+.sugar-sticky-img {
+  width: 52px !important;
+  height: 52px !important;
+  object-fit: cover !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(154, 107, 72, 0.2) !important;
+  flex-shrink: 0 !important;
+}
+
+.sugar-sticky-meta {
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 0 !important;
+}
+
+.sugar-sticky-title {
+  font-size: 1.35rem !important;
+  font-weight: 700 !important;
+  color: #1C1917 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.sugar-sticky-price {
+  font-size: 1.35rem !important;
+  font-weight: 700 !important;
+  color: #9A6B48 !important;
+}
+
+.sugar-sticky-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
+  flex-shrink: 0 !important;
+}
+
+.sugar-sticky-btn {
+  background: #1C1917 !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  border-radius: 9999px !important;
+  padding: 1rem 2.6rem !important;
+  font-size: 1.3rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2) !important;
+  transition: all 0.2s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.6rem !important;
+}
+
+.sugar-sticky-btn:hover {
+  background: #9A6B48 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 18px rgba(154, 107, 72, 0.35) !important;
+}
+
+@media screen and (max-width: 650px) {
+  .sugar-sticky-title {
+    max-width: 150px !important;
+  }
+  .sugar-sticky-btn {
+    padding: 0.8rem 1.6rem !important;
+    font-size: 1.15rem !important;
+  }
+}
+
+/* ==========================================================================
+   8. SUGAR-STYLE FREE SHIPPING TIER IN CART DRAWER
+   ========================================================================== */
+.sugar-cart-shipping-bar {
+  background: #FAF8F5 !important;
+  border-bottom: 1px solid rgba(154, 107, 72, 0.2) !important;
+  padding: 1.2rem 1.6rem !important;
+}
+
+.sugar-shipping-msg {
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  color: #1C1917 !important;
+  text-align: center !important;
+  margin-bottom: 0.8rem !important;
+}
+
+.sugar-shipping-msg strong {
+  color: #9A6B48 !important;
+}
+
+.sugar-shipping-msg .unlocked {
+  color: #15803D !important;
+  font-weight: 700 !important;
+}
+
+.sugar-shipping-progress {
+  width: 100% !important;
+  height: 8px !important;
+  background: #E7E5E4 !important;
+  border-radius: 9999px !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+.sugar-shipping-fill {
+  height: 100% !important;
+  background: linear-gradient(90deg, #9A6B48 0%, #D4AF37 100%) !important;
+  border-radius: 9999px !important;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}

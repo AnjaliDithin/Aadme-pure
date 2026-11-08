@@ -1,0 +1,142 @@
+{% comment %}
+  Aadame Pure Watch & Shop Video Reels Section
+  Interactive video cards with hover play, product tags, and 1-click Quick Add to Bag
+{% endcomment %}
+<div id="AadameReels" class="aadame-reels-section">
+  <div class="page-width">
+    <div style="text-align: center; max-width: 680px; margin: 0 auto;">
+      <span style="color: #9A6B48; font-size: 1.2rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1rem; display: block;">✦ Watch & Shop ✦</span>
+      <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2.8rem, 4vw, 4.4rem); color: #1C1917; margin-bottom: 1.2rem;">Rituals in Motion</h2>
+      <p style="font-size: 1.5rem; color: #57534E; line-height: 1.6;">
+        Explore quick rituals and master the art of glass-skin hydration. Hover over any reel to watch and add directly to your bag.
+      </p>
+    </div>
+
+    <div class="aadame-reels-grid">
+      <!-- Reel Card 1: Serum -->
+      {%- assign serum_prod = collections.all.products | where: "title", "Dew Drops Bio-Peptide Serum" | first -%}
+      {%- if serum_prod == blank -%}
+        {%- assign serum_prod = collections.all.products.first -%}
+      {%- endif -%}
+      <div class="aadame-reel-card">
+        <video
+          class="aadame-reel-video"
+          autoplay
+          loop
+          muted
+          playsinline
+          poster="{{ 'product-serum.jpg' | asset_url }}"
+        >
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-macro-dropper-dropping-cosmetic-serum-41444-large.mp4" type="video/mp4" />
+        </video>
+
+        <div class="aadame-reel-overlay">
+          <span class="aadame-reel-tag">✦ STEP 2: HYDRATE & PLUMP</span>
+          <h3 class="aadame-reel-title">The 30-Second Morning Peptide Glow Ritual</h3>
+
+          <div class="aadame-reel-product-pill">
+            <div class="aadame-reel-prod-info">
+              <span class="aadame-reel-prod-name">{{ serum_prod.title | default: 'Dew Drops Bio-Peptide Serum' }}</span>
+              <span class="aadame-reel-prod-price">{{ serum_prod.price | default: 4800 | money }}</span>
+            </div>
+            <button
+              type="button"
+              class="aadame-reel-buy-btn"
+              data-variant-id="{{ serum_prod.selected_or_first_available_variant.id | default: '1' }}"
+            >
+              + Add to Bag
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reel Card 2: Cream -->
+      {%- assign cream_prod = collections.all.products | where: "title", "Ceramide Barrier Cloud Cream" | first -%}
+      {%- if cream_prod == blank -%}
+        {%- assign cream_prod = collections.all.products[1] | default: collections.all.products.first -%}
+      {%- endif -%}
+      <div class="aadame-reel-card">
+        <video
+          class="aadame-reel-video"
+          autoplay
+          loop
+          muted
+          playsinline
+          poster="{{ 'product-cream.jpg' | asset_url }}"
+        >
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-close-up-of-a-woman-applying-moisturizer-41315-large.mp4" type="video/mp4" />
+        </video>
+
+        <div class="aadame-reel-overlay">
+          <span class="aadame-reel-tag">✦ STEP 3: LOCK & SEAL</span>
+          <h3 class="aadame-reel-title">Ceramide Barrier Cloud Cream Melting Texture</h3>
+
+          <div class="aadame-reel-product-pill">
+            <div class="aadame-reel-prod-info">
+              <span class="aadame-reel-prod-name">{{ cream_prod.title | default: 'Ceramide Barrier Cloud Cream' }}</span>
+              <span class="aadame-reel-prod-price">{{ cream_prod.price | default: 5400 | money }}</span>
+            </div>
+            <button
+              type="button"
+              class="aadame-reel-buy-btn"
+              data-variant-id="{{ cream_prod.selected_or_first_available_variant.id | default: '1' }}"
+            >
+              + Add to Bag
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reel Card 3: Rose Dew Mist -->
+      {%- assign mist_prod = collections.all.products | where: "title", "Aadame Pure Rose Dew Hydrating Facial Mist" | first -%}
+      {%- if mist_prod == blank -%}
+        {%- assign mist_prod = collections.all.products[2] | default: collections.all.products.first -%}
+      {%- endif -%}
+      <div class="aadame-reel-card">
+        <video
+          class="aadame-reel-video"
+          autoplay
+          loop
+          muted
+          playsinline
+          poster="{{ 'product-mist.jpg' | asset_url }}"
+        >
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-water-bubbles-rising-in-slow-motion-42525-large.mp4" type="video/mp4" />
+        </video>
+
+        <div class="aadame-reel-overlay">
+          <span class="aadame-reel-tag">✦ STEP 1: PREP & REFRESH</span>
+          <h3 class="aadame-reel-title">Damascus Rose Micro-Mist All-Day Radiance</h3>
+
+          <div class="aadame-reel-product-pill">
+            <div class="aadame-reel-prod-info">
+              <span class="aadame-reel-prod-name">{{ mist_prod.title | default: 'Aadame Pure Rose Dew Facial Mist' }}</span>
+              <span class="aadame-reel-prod-price">{{ mist_prod.price | default: 3800 | money }}</span>
+            </div>
+            <button
+              type="button"
+              class="aadame-reel-buy-btn"
+              data-variant-id="{{ mist_prod.selected_or_first_available_variant.id | default: '1' }}"
+            >
+              + Add to Bag
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Watch & Shop Reels",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Watch & Shop Reels"
+    }
+  ]
+}
+{% endschema %}

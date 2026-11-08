@@ -1,0 +1,116 @@
+{%- if cart != empty -%}
+  {%- for item in cart.items -%}
+    {%- liquid
+      assign modern_skincare_cart_img = ''
+      assign display_cart_title = item.product.title
+      assign display_cart_vendor = item.product.vendor
+
+      if settings.use_modern_skincare_product_images != false
+        assign p_title_lower = item.product.title | downcase
+        assign p_handle_lower = item.product.handle | downcase
+        assign p_mod = item.product.id | default: item.id | default: forloop.index | modulo: 4
+
+        if p_title_lower contains 'serum' or p_handle_lower contains 'serum'
+          assign modern_skincare_cart_img = 'product-serum.jpg'
+          assign display_cart_title = 'Aadame Pure Dew Drops Peptide Serum'
+        elsif p_title_lower contains 'cream' or p_handle_lower contains 'cream'
+          assign modern_skincare_cart_img = 'product-cream.jpg'
+          assign display_cart_title = 'Aadame Pure Ceramide Barrier Recovery Cream'
+        elsif p_title_lower contains 'cleanser' or p_handle_lower contains 'cleanser'
+          assign modern_skincare_cart_img = 'product-cleanser.jpg'
+          assign display_cart_title = 'Aadame Pure Gentle Botanical Jelly Cleanser'
+        elsif p_title_lower contains 'mist' or p_handle_lower contains 'mist'
+          assign modern_skincare_cart_img = 'product-mist.jpg'
+          assign display_cart_title = 'Aadame Pure Rose Dew Hydrating Facial Mist'
+        elsif p_title_lower contains 'wax' or p_title_lower contains 'ski' or p_title_lower contains 'snowboard' or p_title_lower contains 'apparel' or p_title_lower contains 'shirt' or p_title_lower contains 'pant' or p_title_lower contains 'dress' or p_title_lower contains 'example' or p_title_lower contains 'demo'
+          case p_mod
+            when 0
+              assign modern_skincare_cart_img = 'product-serum.jpg'
+              assign display_cart_title = 'Aadame Pure Dew Drops Peptide Serum'
+            when 1
+              assign modern_skincare_cart_img = 'product-cream.jpg'
+              assign display_cart_title = 'Aadame Pure Ceramide Barrier Recovery Cream'
+            when 2
+              assign modern_skincare_cart_img = 'product-cleanser.jpg'
+              assign display_cart_title = 'Aadame Pure Gentle Botanical Jelly Cleanser'
+            when 3
+              assign modern_skincare_cart_img = 'product-mist.jpg'
+              assign display_cart_title = 'Aadame Pure Rose Dew Hydrating Facial Mist'
+          endcase
+        endif
+
+        assign display_cart_vendor = 'Aadame Pure'
+      endif
+    -%}
+    <div id="cart-notification-product-{{ item.key }}" class="cart-item">
+      {%- if modern_skincare_cart_img != blank -%}
+        <div class="cart-notification-product__image global-media-settings" style="width: 70px; height: 70px; border-radius: 10px; overflow: hidden; background: #FAF8F5;">
+          <img
+            src="{{ modern_skincare_cart_img | asset_url }}"
+            alt="{{ display_cart_title | escape }}"
+            width="70"
+            height="70"
+            loading="lazy"
+            style="width: 100%; height: 100%; object-fit: cover;"
+          >
+        </div>
+      {%- elsif item.image -%}
+        <div class="cart-notification-product__image global-media-settings">
+          <img
+            src="{{ item.image | image_url: width: 140 }}"
+            alt="{{ item.image.alt | escape }}"
+            width="70"
+            height="{{ 70 | divided_by: item.image.aspect_ratio | ceil }}"
+            loading="lazy"
+          >
+        </div>
+      {%- endif -%}
+      <div>
+        {%- if settings.show_vendor -%}
+          <p class="caption-with-letter-spacing light">{{ display_cart_vendor }}</p>
+        {%- endif -%}
+        <div class="cart-notification-product__title">
+          <h3 class="cart-notification-product__name h4">
+            {{- display_cart_title | escape -}}
+          </h3>
+          {%- assign modal_id = 'CartDisclosureModal-notification-' | append: item.key | replace: ':', '-' -%}
+          {%- render 'cart-disclosure-indicator', product: item.product, modal_id: modal_id -%}
+        </div>
+        <dl>
+          {%- unless item.product.has_only_default_variant -%}
+            {%- for option in item.options_with_values -%}
+              {%- assign opt_val = option.value -%}
+              {%- if opt_val contains 'Ski Wax' or opt_val contains 'Snowboard' or opt_val contains 'Default' -%}
+                {%- assign opt_val = 'Standard Ritual 50ml' -%}
+              {%- endif -%}
+              <div class="product-option">
+                <dt>{{ option.name }}:</dt>
+                <dd>{{ opt_val }}</dd>
+              </div>
+            {%- endfor -%}
+          {%- endunless -%}
+          {%- for property in item.properties -%}
+            {%- assign property_first_char = property.first | slice: 0 -%}
+            {%- if property.last != blank and property_first_char != '_' -%}
+              <div class="product-option">
+                <dt>{{ property.first }}:</dt>
+                <dd>
+                  {%- if property.last contains '/uploads/' -%}
+                    <a href="{{ property.last }}" class="link" target="_blank">
+                      {{ property.last | split: '/' | last }}
+                    </a>
+                  {%- else -%}
+                    {{ property.last }}
+                  {%- endif -%}
+                </dd>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </dl>
+        {%- if item.selling_plan_allocation != null -%}
+          <p class="product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endfor -%}
+{%- endif -%}
